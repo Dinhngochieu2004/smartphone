@@ -10,6 +10,7 @@ const AdminController = require("../apps/controllers/admin");
 const AuthAdminController = require("../apps/controllers/auth.admin");
 // import middlewares
 const AuthMiddleware = require("../apps/middlewares/auth");
+const UserController = require("../apps/controllers/apis/user");
 //rourter Site
 //Auth
 router.post("/customers/login", AuthController.loginCustomer);
@@ -35,20 +36,20 @@ router.post("/customers/logout",AuthMiddleware.verifyAuthenticationCustomer,Auth
 ///Router Admin
 router.get("/admin",AdminController.index);
 //categories
-router.post("/categories/create",AdminController.addCategory);
-router.post("/categories/:id/update",AdminController.updateCategories);
-router.get("/categories/:id/delete",AdminController.deleteCategories);
+router.post("/categories/create",CategoryController.addCategory);
+router.post("/categories/:id/update",CategoryController.updateCategories);
+router.get("/categories/:id/delete",CategoryController.deleteCategories);
 //Products
-router.get("/products",AdminController.listProducts);
-router.post("/products/create",AdminController.createProducts);
-router.post("/products/:id/update",AdminController.updateProducts);
-router.get("/products/:id/delete",AdminController.deleteProducts);
+router.get("/products",ProductController.listProducts);
+router.post("/products/create",ProductController.createProducts);
+router.post("/products/:id/update",ProductController.updateProducts);
+router.get("/products/:id/delete",ProductController.deleteProducts);
 //Users
-router.get("/users",AdminController.listUser);
-router.get("/users/:id",AdminController.showUser);
-router.post("/users/create",AdminController.createUser);
-router.post("/users/:id/update",AdminController.updateUser);
-router.get("/users/:id/delete",AdminController.deleteUser);
+router.get("/users",UserController.listUser);
+router.get("/users/:id",UserController.showUser);
+router.post("/users/create",UserController.createUser);
+router.post("/users/:id/update",UserController.updateUser);
+router.get("/users/:id/delete",UserController.deleteUser);
 //auth
 
 module.exports = router;

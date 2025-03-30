@@ -200,25 +200,33 @@ const AdminController = {
             return res.status(400).json(error);
         }
     },
-    createUser:async(req,res)=>{
+    createUser: async (req, res) => {
         try {
-            const {body} = req;
-            const user = {
-                full_name: body.full_name,
-                email: body.email,
-                password: body.password,
-                // role: body.role,
+            const { full_name, email, password } = req.body;
+
+            // Kiểm tra nếu email đã tồn tại
+            const existingUser = await UserModel.findOne({ email });
+            if (existingUser) {
+                return res.status(400).json({
+                    status: "error",
+                    message: "Email already exists",
+                });
             }
-            const newUser = await UserModel.findOne({email: body.email});
-            if(newUser){
-                req.flash("error","Email đã tồn tại");
-                return res.redirect("/admin/users/create");
-            }
-            await UserModel(user).save();
-            return res.status(200).json({
+
+            // Tạo người dùng mới
+            const newUser = new UserModel({
+                full_name,
+                email,
+                password,
+            });
+
+            // Lưu người dùng vào cơ sở dữ liệu
+            await newUser.save();
+
+            return res.status(201).json({
                 status: "success",
-                message:" user created successfully",
-            })          
+                message: "User created successfully",
+            });
         } catch (error) {
             return res.status(500).json(error);
         }

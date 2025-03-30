@@ -88,38 +88,6 @@ const ProductController ={
             res.status(400).json(error);
         }
     },
-    listProducts: async (req, res) => {
-        try {
-            const page = Number(req.query.page) || 1; 
-            const limit = Number(req.query.limit) || 10; 
-            const skip = page*limit- limit;
-
-            // Lấy danh sách sản phẩm với phân trang
-            const products = await ProductModel.find()
-                .sort({ _id: -1 }) // Sắp xếp giảm dần theo _id
-                .skip(skip)
-                .limit(limit);
-
-            // Tổng số sản phẩm
-            const totalRows = await ProductModel.countDocuments();
-            const totalPages = Math.ceil(totalRows / limit); // Tổng số trang
-
-            return res.status(200).json({
-                status: "success",
-                data: {
-                    products,
-                    pagination: {
-                        currentPage: page,
-                        totalPages,
-                        totalRows,
-                        limit,
-                    },
-                },
-            });
-        } catch (error) {
-            return res.status(500).json(error);
-        }
-    },
     createProducts: async (req, res) => {
         try {
             const { name, price ,status,category_id,details,promotion,accessories } = req.body;

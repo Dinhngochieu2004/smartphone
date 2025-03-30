@@ -40,7 +40,6 @@ router.post("/categories/create",CategoryController.addCategory);
 router.post("/categories/:id/update",CategoryController.updateCategories);
 router.get("/categories/:id/delete",CategoryController.deleteCategories);
 //Products
-router.get("/products",ProductController.listProducts);
 router.post("/products/create",ProductController.createProducts);
 router.post("/products/:id/update",ProductController.updateProducts);
 router.get("/products/:id/delete",ProductController.deleteProducts);

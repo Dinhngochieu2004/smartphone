@@ -27,31 +27,22 @@ const UserController = {
     },
     createUser: async (req, res) => {
         try {
-            const { full_name, email, password } = req.body;
-
-            // Kiểm tra nếu email đã tồn tại
-            const existingUser = await UserModel.findOne({ email });
-            if (existingUser) {
-                return res.status(400).json({
-                    status: "error",
-                    message: "Email already exists",
-                });
+            const {body} = req;
+            const user = {
+                full_name: body.full_name,
+                email: body.email,
+                password: body.password,
             }
-
-            // Tạo người dùng mới
-            const newUser = new UserModel({
-                full_name,
-                email,
-                password,
-            });
-
-            // Lưu người dùng vào cơ sở dữ liệu
-            await newUser.save();
-
-            return res.status(201).json({
+            const newUser = await UserModel.findOne({email: body.email});
+            if(newUser){
+               return res.status(401).json("email đã tồn tạitại")
+            }
+            await UserModel(user).save();
+            return res.status(200).json({
                 status: "success",
-                message: "User created successfully",
-            });
+                message:"user created successfully",
+            })
+                
         } catch (error) {
             return res.status(500).json(error);
         }

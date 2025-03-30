@@ -1,6 +1,7 @@
 const ProductModel = require("../../models/product");
 const CommentModel = require("../../models/comments");
 const pagination = require("../../../libs/pagination");
+const CategoryModel = require("../../models/category");
 const ProductController ={
     /// trang Site
     index :async(req, res) => {

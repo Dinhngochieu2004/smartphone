@@ -1,10 +1,10 @@
-const CustomerModel = require("../models/customer");
-const TokenModel = require("../models/token");
+const CustomerModel = require("../../models/customer");
+const TokenModel = require("../../models/token");
 const jwt = require("jsonwebtoken");
 const jwtDecode = require("jwt-decode");
 const config = require("config");
 const bcrypt = require("bcryptjs");
-const { redisClient } = require("../../common/init.redis");
+const { redisClient } = require("../../../common/init.redis");
 const generateAccesstoken = async(customer)=>{
     return jwt.sign({ email: customer.email }, config.get("app.jwtAccesskey"), {
         expiresIn: "10m",      

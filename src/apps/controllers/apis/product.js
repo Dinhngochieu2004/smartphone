@@ -88,6 +88,7 @@ const ProductController ={
             res.status(400).json(error);
         }
     },
+    // Trang Admin
     createProducts: async (req, res) => {
         try {
             const { name, price ,status,category_id,details,promotion,accessories } = req.body;

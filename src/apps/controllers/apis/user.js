@@ -1,5 +1,6 @@
 const UserModel = require("../../models/user");
 const UserController = {
+    // trang Admin
     listUser:async(req,res)=>{
         try {
             const users = await UserModel.find()

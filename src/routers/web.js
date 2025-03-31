@@ -50,5 +50,6 @@ router.post("/users/create",UserController.createUser);
 router.post("/users/:id/update",UserController.updateUser);
 router.get("/users/:id/delete",UserController.deleteUser);
 //auth
-
+router.post("/login",AuthAdminController.login);
+router.post("/logout",AuthAdminController.logout);
 module.exports = router;

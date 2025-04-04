@@ -20,7 +20,7 @@ pipeline {
         steps{
             echo "build image"
             echo "tag"
-            echo "push docker hub2"
+            echo "push docker hub"
         }
       }
     }

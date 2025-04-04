@@ -1,25 +1,27 @@
 pipeline {
     agent any
-    stages("Clone"){
+    stages { 
+      stage("Clone"){
         steps{
             echo "Clone code from github"
         }
-    }
-    stages("Build"){
+      }
+      stage("Build"){
         steps{
             echo "Build code"
         }
-    }
-    stages("Test"){
+      }
+      stage("Test"){
         steps{
             echo "Run unit test"
         }
-    }
-    stages("Docker"){
+      }
+      stage("Docker"){
         steps{
             echo "build image"
             echo "tag"
             echo "push docker hub2"
         }
+      }
     }
 }

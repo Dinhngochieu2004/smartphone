@@ -1,0 +1,23 @@
+pipeline {
+    agent any
+    stages("Clone"){
+        steps{
+            echo "Clone code from github"
+        }
+    }
+    stages("Build"){
+        steps{
+            echo "Build code"
+        }
+    }
+    stages("Test"){
+        steps{
+            echo "Run unit test"
+        }
+    }
+    stages("Docker"){
+        steps{
+            echo "build image"
+        }
+    }
+}

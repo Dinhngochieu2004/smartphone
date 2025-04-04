@@ -18,6 +18,8 @@ pipeline {
     stages("Docker"){
         steps{
             echo "build image"
+            echo "tag"
+            echo "push docker hub"
         }
     }
 }

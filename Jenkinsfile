@@ -3,7 +3,9 @@ pipeline {
     stages { 
       stage("Clone"){
         steps{
-            echo "Clone code from github"
+            echo "Clone code start"
+            git branch: 'main', credentialsId:"cred-github", url:'https://github.com/Dinhngochieu2004/smartphone.git'
+            echo "clone finish"
         }
       }
       stage("Build"){

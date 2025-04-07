@@ -1,7 +1,4 @@
-# Base image
 FROM node:18-alpine
-
-# Set working directory
 WORKDIR /app
 
 # Copy files
